@@ -1,5 +1,5 @@
 <template>
-  <section>
-    <p>This page will be displayed at the /about route.</p>
-  </section>
+  <div class="absolute bottom-1/2 right-1/2">
+    <div class="scale-[4]"><NotificationWebsocket /></div>
+  </div>
 </template>
