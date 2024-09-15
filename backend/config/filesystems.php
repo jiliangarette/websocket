@@ -32,8 +32,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app/private'),
-            'serve' => true,
+            'root' => storage_path('app'),
             'throw' => false,
         ],
 
@@ -56,6 +55,17 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+
+        'spaces' => [
+        'driver' => 's3',
+        'key'    => env('DO_SPACE_KEY'),
+        'secret' => env('DO_SPACE_SECRET'),
+        'endpoint' => env('DO_SPACE_ENDPOINT'),
+        'bucket' => env('DO_SPACE_NAME'),
+        'region' => 'your-region',
+        'use_path_style_endpoint' => true,
+        'throw' => false,
+    ],
 
     ],
 
