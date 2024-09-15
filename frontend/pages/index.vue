@@ -11,6 +11,9 @@
     </div>
     <div
       class="notification-cards w-screen px-24 flex flex-col place-items-center overflow-y-scroll h-[600px]">
+      <div v-if="isLoading" class="absolute bottom-1/2 right-1/2">
+        <LoadingSpinner />
+      </div>
       <div
         v-for="user in users"
         :key="user.id"
@@ -32,7 +35,7 @@
 <script setup>
   import axios from "axios";
   import { ref, onMounted } from "vue";
-
+  const isLoading = ref(true);
   const users = ref([]);
 
   const getBackendData = async () => {
@@ -43,6 +46,8 @@
       users.value = response.data;
     } catch (error) {
       console.log(error);
+    } finally {
+      isLoading.value = false;
     }
   };
 
