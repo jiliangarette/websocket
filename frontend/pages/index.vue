@@ -15,17 +15,17 @@
         <LoadingSpinner />
       </div>
       <div
-        v-for="user in users"
-        :key="user.id"
+        v-for="participant in participants"
+        :key="participant.id"
         class="card w-full border border-red-200 p-4 mb-2 rounded shadow-md bg-white">
         <p>
-          <strong class="text-green-800">{{ user.name }}</strong> played
-          <strong>{{ user.game }}</strong> with a score of
-          <strong>{{ user.score }}</strong
+          <strong class="text-green-800">{{ participant.participant }}</strong>
+          played <strong>{{ participant.quiz }}</strong> with a score of
+          <strong>{{ participant.score }}</strong
           >.
         </p>
         <p class="text-gray-500">
-          {{ new Date(user.timestamp).toLocaleString() }}
+          {{ new Date(participant.completed_at).toLocaleString() }}
         </p>
       </div>
     </div>
@@ -36,14 +36,15 @@
   import axios from "axios";
   import { ref, onMounted } from "vue";
   const isLoading = ref(true);
-  const users = ref([]);
+  const participants = ref([]);
 
   const getBackendData = async () => {
     try {
       const response = await axios.get(
-        "https://run.mocky.io/v3/a99452f8-32f4-4bfb-9dc6-70babc22abe7"
+        "http://127.0.0.1:8000/api/participants-summary-quiz"
+        // "https://run.mocky.io/v3/a99452f8-32f4-4bfb-9dc6-70babc22abe7"
       );
-      users.value = response.data;
+      participants.value = response.data;
     } catch (error) {
       console.log(error);
     } finally {
